@@ -1,6 +1,6 @@
 """
-Dieses Modul beschreibt eine Tür mit den Attributen
- Farbe, Zustand (offen/geschlossen) und Verriegelung.
+Dieses Modul beschreibt eine Tür mit den
+ Attributen Farbe, Zustand (offen/geschlossen) und Verriegelung.
 Es enthält die Klassen Door und DoorLock.
 """
 
@@ -9,8 +9,7 @@ class Door:
     Diese Klasse beschreibt eine Tür mit der Eigenschaft color (Farbe) und den Zuständen
     door_is_open (für geöffnete Tür) sowie door_is_locked (für verriegelte Tür).
     Die Tür überwacht die beiden Zustände und verhindert so Aktionen, die nicht möglich sind.
-    Das Verriegeln selbst delegiert die Tür an ein Objekt vom Typ DoorLock
-    (Türschloss).
+    Das Verriegeln selbst delegiert die Tür an ein Objekt vom Typ DoorLock (Türschloss).
     """
 
     def __init__(self, ref2door_lock, base_color):
@@ -22,7 +21,7 @@ class Door:
         self._the_door_lock = ref2door_lock
         self.color = base_color
         self._door_is_open = False
-        self.door_is_locked = False
+        self._door_is_locked = False  # Private Variable zur Speicherung des Zustands
 
     def open_the_door(self):
         """
@@ -46,7 +45,7 @@ class Door:
         Für das Verriegeln ist aber das Türschloss zuständig.
         """
         if not self.door_is_open:
-            self.door_is_locked = self._the_door_lock.lock()
+            self.door_is_locked = self._the_door_lock.lock()  # Verwenden des Setters
 
     def unlock_the_door(self):
         """
@@ -55,7 +54,7 @@ class Door:
         Für das Entriegeln ist aber das Türschloss zuständig.
         """
         if self.door_is_locked:
-            self.door_is_locked = self._the_door_lock.unlock()
+            self.door_is_locked = self._the_door_lock.unlock()  # Verwenden des Setters
 
     def test(self):
         """
@@ -79,7 +78,15 @@ class Door:
         Getter-Methode für den Zustand door_is_locked.
         :return: True, wenn die Tür verriegelt ist, sonst False.
         """
-        return self.door_is_locked
+        return self._door_is_locked
+
+    @door_is_locked.setter
+    def door_is_locked(self, value):
+        """
+        Setter-Methode für den Zustand door_is_locked.
+        :param value: Neuer Verriegelungszustand der Tür.
+        """
+        self._door_is_locked = value
 
     @property
     def color(self):
