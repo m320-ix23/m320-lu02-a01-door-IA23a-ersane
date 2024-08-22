@@ -4,6 +4,7 @@ class Door:
     door_is_open (für geöffnete Türe) sowie door_is_locked (für verriegelte Türe).
     Die Türe überwacht die beiden Zustände und verhindert so Aktionen, die nicht möglich sind.
     Das verriegeln selber delegiert die Türe an ein Objekt vom Typ Door_lock (Türschloss).
+    hkjkjk
     """
 
     # Mit dem Keyword def wird eine Funktion bzw. eben ein Konstruktor deklariert.
